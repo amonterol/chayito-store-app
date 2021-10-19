@@ -1,16 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { GlobalState } from "../../../GlobalState";
-import { Link } from "react-router-dom";
 import axios from "axios";
-//import PaypalButton from "./PaypalButton";
+import PaypalButton from "./PaypalButton";
 
 function Cart() {
   const state = useContext(GlobalState);
-  const [cart] = state.userAPI.cart;
+  const [cart, setCart] = state.userAPI.cart;
   const [token] = state.token;
   const [total, setTotal] = useState(0);
 
-  /*
   useEffect(() => {
     const getTotal = () => {
       const total = cart.reduce((prev, item) => {
@@ -25,7 +23,7 @@ function Cart() {
 
   const addToCart = async (cart) => {
     await axios.patch(
-      "/user/addcart",
+      `/user/addcart`,
       { cart },
       {
         headers: { Authorization: token },
@@ -72,7 +70,7 @@ function Cart() {
     const { paymentID, address } = payment;
 
     await axios.post(
-      "/api/payment",
+      `/api/payment`,
       { cart, paymentID, address },
       {
         headers: { Authorization: token },
@@ -83,7 +81,7 @@ function Cart() {
     addToCart([]);
     alert("You have successfully placed an order.");
   };
- */
+
   if (cart.length === 0)
     return (
       <h2 style={{ textAlign: "center", fontSize: "5rem" }}>Cart Empty</h2>
@@ -116,8 +114,7 @@ function Cart() {
 
       <div className="total">
         <h3>Total: $ {total}</h3>
-        <Link to="#!">Payment</Link>
-        {/* <PaypalButton total={total} tranSuccess={tranSuccess} /> */}
+        <PaypalButton total={total} tranSuccess={tranSuccess} />
       </div>
     </div>
   );

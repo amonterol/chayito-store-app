@@ -1,8 +1,6 @@
 import React from "react";
 import BtnRender from "./BtnRender";
 
-import { Link } from "react-router-dom";
-
 export default function ProductItem({ product, isAdmin }) {
   return (
     <div className="product_card">

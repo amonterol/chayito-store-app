@@ -11,7 +11,8 @@ import { GlobalState } from "../../GlobalState";
 function Pages() {
   const state = useContext(GlobalState);
   const [isLogged] = state.userAPI.isLogged;
-  const [isAdmin] = state.userAPI.isAdmin;
+  //const [isAdmin] = state.userAPI.isAdmin;
+
   return (
     <Switch>
       <Route path="/" exact component={Products} />

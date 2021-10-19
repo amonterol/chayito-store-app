@@ -8,10 +8,10 @@ export default function ProductDetail() {
   const params = useParams();
   const state = useContext(GlobalState);
   const [products] = state.productsAPI.products;
+  const addCart = state.userAPI.addCart;
   const [productDetail, setProductDetail] = useState([]);
 
   useEffect(() => {
-    console.log("re render");
     if (params.id) {
       products.forEach((product) => {
         if (product._id === params.id) {
@@ -39,7 +39,11 @@ export default function ProductDetail() {
           <p>{productDetail.description}</p>
           <p>{productDetail.content}</p>
           <p>Sold: {productDetail.sold}</p>
-          <Link to="/cart" className="cart">
+          <Link
+            to="/cart"
+            className="cart"
+            onClick={() => addCart(productDetail)}
+          >
             Buy Now
           </Link>
         </div>

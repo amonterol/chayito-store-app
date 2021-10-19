@@ -52,6 +52,11 @@ function Header() {
       </>
     );
   };
+  /* 
+  const styleMenu = {
+    left: menu ? 0 : "-100%"
+  }
+ */
 
   return (
     <header>
