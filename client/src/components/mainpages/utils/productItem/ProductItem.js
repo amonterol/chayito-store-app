@@ -1,10 +1,12 @@
 import React from "react";
+import BtnRender from "./BtnRender";
 
 import { Link } from "react-router-dom";
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, isAdmin }) {
   return (
     <div className="product_card">
+      {isAdmin && <input type="checkbox" checked={product.checked} />}
       <img src={product.images} alt="" />
 
       <div className="product_box">
@@ -12,15 +14,7 @@ export default function ProductItem({ product }) {
         <span>${product.price}</span>
         <p>{product.description}</p>
       </div>
-
-      <div className="row_btn">
-        <Link id="btn_buy" to="#!">
-          Buy
-        </Link>
-        <Link id="btn_view" to={`/detail/${product._id}`}>
-          View
-        </Link>
-      </div>
+      <BtnRender product={product} />
     </div>
   );
 }

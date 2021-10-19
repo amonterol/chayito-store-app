@@ -4,9 +4,55 @@ import Menu from "./icons/menu.svg";
 import Close from "./icons/close.svg";
 import Cart from "./icons/cart.svg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Header() {
-  const value = useContext(GlobalState);
+  const state = useContext(GlobalState);
+  const [isLogged] = state.userAPI.isLogged;
+  const [isAdmin] = state.userAPI.isAdmin;
+  const [cart] = state.userAPI.cart;
+
+  {
+    /*const [menu, setMenu] = useState(false) */
+  }
+
+  const logoutUser = async () => {
+    await axios.get(`/user/logout`);
+
+    // localStorage.removeItem("firstLogin");
+    localStorage.clear();
+
+    window.location.href = "/";
+  };
+
+  const adminRouter = () => {
+    return (
+      <>
+        <li>
+          <Link to="/create_product">Create Product</Link>
+        </li>
+        <li>
+          <Link to="/category">Create Category</Link>
+        </li>
+      </>
+    );
+  };
+
+  const loggedRouter = () => {
+    return (
+      <>
+        <li>
+          <Link to="/history">History</Link>
+        </li>
+        <li>
+          <Link to="/" onClick={logoutUser}>
+            Logout
+          </Link>
+        </li>
+      </>
+    );
+  };
+
   return (
     <header>
       <div className="menu">
@@ -14,27 +60,37 @@ function Header() {
       </div>
       <div className="brand">
         <h1>
-          <Link to="/">Tienda Chayito</Link>
+          <Link to="/">{isAdmin ? "Admin" : "Tienda Chayito"}</Link>
         </h1>
       </div>
       <ul>
         <li>
-          <Link to="/">Products</Link>
+          <Link to="/">{isAdmin ? "Products" : "Shop"}</Link>
         </li>
-        <li>
-          <Link to="/login">Login | Register</Link>
-        </li>
+        {isAdmin && adminRouter()}
+
+        {isLogged ? (
+          loggedRouter()
+        ) : (
+          <li>
+            <Link to="/login">Login ✥ Register</Link>
+          </li>
+        )}
+
         <li>
           <img src={Close} alt="" width="30" className="menu" />
         </li>
       </ul>
-      <div className="cart-icon">
-        <span>0</span>
-        <Link to="/cart">
-          {" "}
-          <img src={Cart} alt="" width="30" />
-        </Link>
-      </div>
+      {isAdmin ? (
+        ""
+      ) : (
+        <div className="cart-icon">
+          <span>{cart.length}</span>
+          <Link to="/cart">
+            <img src={Cart} alt="" width="30" />
+          </Link>
+        </div>
+      )}
     </header>
   );
 }
