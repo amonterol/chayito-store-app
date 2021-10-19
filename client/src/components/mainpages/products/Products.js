@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { GlobalState } from "../../../GlobalState";
 import ProductItem from "../utils/productItem/ProductItem";
+import Loading from "../utils/loading/loading";
 
 function Products() {
   const state = useContext(GlobalState);
@@ -9,11 +10,14 @@ function Products() {
   console.log(products);
 
   return (
-    <div className="products">
-      {products.map((product) => {
-        return <ProductItem key={product._id} product={product} />;
-      })}
-    </div>
+    <>
+      <div className="products">
+        {products.map((product) => {
+          return <ProductItem key={product._id} product={product} />;
+        })}
+      </div>
+      {products.length === 0 && <Loading />}
+    </>
   );
 }
 
