@@ -1,3 +1,4 @@
+//Modelo de la categoria de cada producto
 const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema(
@@ -16,6 +17,5 @@ const categorySchema = new mongoose.Schema(
 
 //module.exports = mongoose.model("Category", categorySchema);
 
-const Category =
+module.exports =
   mongoose.models.Category || mongoose.model("Category", categorySchema);
-export default Category;

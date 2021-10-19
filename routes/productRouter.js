@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const productController = require("../controllers/productController");
-const auth = require("../middleware/auth");
-const authAdmin = require("../middleware/authAdmin");
+const auth = require("../utils/auth");
+const authAdmin = require("../utils/authAdmin");
 
 router
   .route("/products")

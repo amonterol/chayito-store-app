@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const categoryController = require("../controllers/categoryController");
-const auth = require("../middleware/auth");
-const authAdmin = require("../middleware/authAdmin");
+const auth = require("../utils/auth");
+const authAdmin = require("../utils/authAdmin");
 
 router
   .route("/category")
   .get(categoryController.getCategories)
-  .post(auth, authAdmin, categoryController.createCategory);
+  .post(auth, authAdmin, categoryController.createCategory); //Solo el usuario administrador puede crear categorias
 
 router
   .route("/category/:id")

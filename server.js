@@ -18,11 +18,11 @@ app.use(
 
 // Routes
 app.use("/user", require("./routes/userRouter"));
+app.use("/api", require("./routes/categoryRouter"));
+app.use("/api", require("./routes/uploadImageRouter"));
+app.use("/api", require("./routes/productRouter"));
 
 /*
-app.use("/api", require("./routes/categoryRouter"));
-app.use("/api", require("./routes/upload"));
-app.use("/api", require("./routes/productRouter"));
 app.use("/api", require("./routes/paymentRouter"));
 */
 
