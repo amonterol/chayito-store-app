@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import ProductsAPI from "./api/ProductsAPI";
 import UserAPI from "./api/UserAPI";
-import CategoriesAPI from "./api/CategoriesAPI";
+import CategoryAPI from "./api/CategoryAPI";
 import axios from "axios";
 
 export const GlobalState = createContext();
@@ -29,7 +29,7 @@ export const DataProvider = ({ children }) => {
     token: [token, setToken],
     productsAPI: ProductsAPI(),
     userAPI: UserAPI(token),
-    categoriesAPI: CategoriesAPI(),
+    categoryAPI: CategoryAPI(),
   };
   return <GlobalState.Provider value={state}>{children}</GlobalState.Provider>;
 };

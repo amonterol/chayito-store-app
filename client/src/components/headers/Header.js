@@ -12,10 +12,6 @@ function Header() {
   const [isAdmin] = state.userAPI.isAdmin;
   const [cart] = state.userAPI.cart;
 
-  {
-    /*const [menu, setMenu] = useState(false) */
-  }
-
   const logoutUser = async () => {
     await axios.get(`/user/logout`);
 
