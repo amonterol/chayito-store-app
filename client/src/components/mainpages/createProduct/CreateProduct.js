@@ -8,8 +8,7 @@ const initialState = {
   product_id: "",
   title: "",
   price: 0,
-  description:
-    "How to and tutorial videos of cool CSS effect, Web Design ideas,JavaScript libraries, Node.",
+  description: "How to and tutorial videos of cool CSS effect.",
   content:
     "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
   category: "",
@@ -69,7 +68,7 @@ function CreateProduct() {
       formData.append("file", file);
 
       setLoading(true);
-      const res = await axios.post("/api/upload", formData, {
+      const res = await axios.post(`/api/uploadImage`, formData, {
         headers: {
           "content-type": "multipart/form-data",
           Authorization: token,
@@ -87,7 +86,7 @@ function CreateProduct() {
       if (!isAdmin) return alert("You're not an admin");
       setLoading(true);
       await axios.post(
-        "/api/destroy",
+        `/api/removeImage`,
         { public_id: images.public_id },
         {
           headers: { Authorization: token },
@@ -121,7 +120,7 @@ function CreateProduct() {
         );
       } else {
         await axios.post(
-          "/api/products",
+          `/api/products`,
           { ...product, images },
           {
             headers: { Authorization: token },
@@ -138,6 +137,7 @@ function CreateProduct() {
   const styleUpload = {
     display: images ? "block" : "none",
   };
+
   return (
     <div className="create_product">
       <div className="upload">

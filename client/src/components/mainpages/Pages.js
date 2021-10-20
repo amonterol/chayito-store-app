@@ -38,6 +38,7 @@ function Pages() {
       <Route path="/category" exact component={isAdmin ? Category : NotFound} />
 
       <Route path="/cart" exact component={Cart} />
+
       <Route
         path="/history"
         exact
