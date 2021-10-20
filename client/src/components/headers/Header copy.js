@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { GlobalState } from "../../GlobalState";
 import Menu from "./icons/menu.svg";
 import Close from "./icons/close.svg";
@@ -11,7 +11,6 @@ function Header() {
   const [isLogged] = state.userAPI.isLogged;
   const [isAdmin] = state.userAPI.isAdmin;
   const [cart] = state.userAPI.cart;
-  const [menu, setMenu] = useState(false);
 
   const logoutUser = async () => {
     await axios.get(`/user/logout`);
@@ -49,14 +48,15 @@ function Header() {
       </>
     );
   };
-
+  /* 
   const styleMenu = {
-    left: menu ? 0 : "-100%",
-  };
+    left: menu ? 0 : "-100%"
+  }
+ */
 
   return (
     <header>
-      <div className="menu" onClick={() => setMenu(!menu)}>
+      <div className="menu">
         <img src={Menu} alt="" width="30" />
       </div>
       <div className="brand">
@@ -64,7 +64,7 @@ function Header() {
           <Link to="/">{isAdmin ? "Admin" : "Tienda Chayito"}</Link>
         </h1>
       </div>
-      <ul style={styleMenu}>
+      <ul>
         <li>
           <Link to="/">{isAdmin ? "Products" : "Shop"}</Link>
         </li>
@@ -78,7 +78,7 @@ function Header() {
           </li>
         )}
 
-        <li onClick={() => setMenu(!menu)}>
+        <li>
           <img src={Close} alt="" width="30" className="menu" />
         </li>
       </ul>
