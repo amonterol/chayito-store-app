@@ -1,13 +1,14 @@
 header {
-  min-height: 80px;
+  min-height: 90px;
   width: 100%;
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px inset #ff9900;
 }
+
 header .brand {
   flex: 1;
 }
@@ -39,4 +40,43 @@ header ul li:hover {
   right: -10px;
   padding: 5px 7px;
   font-size: 10px;
+}
+.top-nav {
+  min-height: 30px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #2f2835;
+}
+.redes {
+  display: flex;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  align-items: center;
+}
+.redes li {
+  margin: 0.2rem 0.5rem 0.2rem 0.5rem;
+}
+
+.redes li:hover {
+  /*  color: #eee; */
+  /* transform: translate(-50%, -150%); */
+  transform: scale(1.1, 1.1);
+}
+.info {
+  font-size: 1rem;
+  color: white;
+}
+
+.phone {
+  font-size: 0.9rem;
+  color: white;
+  margin: 0.2rem 1rem 0.2rem 1rem;
+}
+
+.logo {
+  width: 3rem;
 }

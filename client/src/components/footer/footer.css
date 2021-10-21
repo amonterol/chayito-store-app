@@ -1,0 +1,17 @@
+.grid-container {
+  display: grid;
+  grid: 250px / auto auto auto;
+  grid-gap: 10px;
+  background-color: #2b2929;
+  padding: 10px;
+}
+.grid-container > div {
+  background-color: #2b2929;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 24px;
+  list-style-type: none;
+  font-family: Tahoma, Verdana, Helvetica;
+  font-weight: normal;
+  color: #eee;
+}

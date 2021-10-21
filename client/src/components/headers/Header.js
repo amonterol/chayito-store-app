@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { GlobalState } from "../../GlobalState";
+import Logo from "./icons/logoTienda.PNG";
 import Menu from "./icons/menu.svg";
 import Close from "./icons/close.svg";
 import Cart from "./icons/cart.svg";
@@ -61,8 +62,13 @@ function Header() {
       </div>
       <div className="brand">
         <h1>
-          <Link to="/">{isAdmin ? "Admin" : "Tienda Chayito"}</Link>
+          <Link className="logo">
+            <img src={Logo} alt="Logo" width="165px" height="80px" />
+          </Link>
         </h1>
+        {/* <h1>
+          <Link to="/">{isAdmin ? "Admin" : "Tienda Chayito"}</Link>
+        </h1> */}
       </div>
       <ul style={styleMenu}>
         <li>
