@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Switch, Route } from "react-router-dom";
+import HomePage from "./homepage/HomePage.js";
 import Products from "./products/Products";
 import ProductDetail from "./productDetail/ProductDetail.js";
 import Login from "./auth/Login";
@@ -19,7 +20,8 @@ function Pages() {
 
   return (
     <Switch>
-      <Route path="/" exact component={Products} />
+      <Route path="/" exact component={HomePage} />
+      <Route path="/products" exact component={Products} />
       <Route path="/detail/:id" exact component={ProductDetail} />
       <Route
         path="/create_product"

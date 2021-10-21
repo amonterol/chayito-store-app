@@ -62,7 +62,7 @@ function Header() {
       </div>
       <div className="brand">
         <h1>
-          <Link className="logo">
+          <Link to="/">
             <img src={Logo} alt="Logo" width="165px" height="80px" />
           </Link>
         </h1>
@@ -72,7 +72,7 @@ function Header() {
       </div>
       <ul style={styleMenu}>
         <li>
-          <Link to="/">{isAdmin ? "Products" : "Shop"}</Link>
+          <Link to="/products">{isAdmin ? "Products" : "Shop"}</Link>
         </li>
         {isAdmin && adminRouter()}
 

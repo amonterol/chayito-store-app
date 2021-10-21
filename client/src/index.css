@@ -15,7 +15,7 @@ code {
 }
 .App {
   max-width: 1430px;
-  min-height: 100vh;
+  min-height: 150vh;
   margin: 0 auto;
   padding: 0 20px; /* Espacio entre cada product card*/
   /* box-shadow: 0 0 35px #eee; */
@@ -60,6 +60,9 @@ button {
 
 /* ---------------- Header ------------ */
 @import url("./components/footer/footer.css");
+
+/* ---------------- Home Page ------------ */
+@import url("./components/mainpages/homepage/homepage.css");
 
 /* ----------------- Responsive ------------------ */
 @media (max-width: 820px) {
