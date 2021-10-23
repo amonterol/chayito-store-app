@@ -1,7 +1,14 @@
-import React from "react";
-//import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { GlobalState } from "../../../GlobalState";
+import ProductItem from "../utils/productItem/ProductItem";
 
 export default function Home() {
+  const state = useContext(GlobalState);
+  const [featuredWomenProducts, setfeaturedWomenProducts] =
+    state.productsAPI.featuredWomenProducts;
+  const [featuredMenProducts, setfeaturedMenProducts] =
+    state.productsAPI.featuredMenProducts;
+
   return (
     <main>
       {/*  ---------------------------------- women and men clothes secction ------------------------------------ */}
@@ -77,7 +84,25 @@ export default function Home() {
       </section>
 
       {/*  ---------------------------------- slide show secction ------------------------------------ */}
-      <section></section>
+
+      <section>
+        {/* PRODUCTOS DESTACADOS ROPA MUJERES */}
+        <h2 className="title">FEATURED PRODUCTS - WOMEN'S CLOTHING</h2>
+        <div className="products">
+          {featuredWomenProducts.map((product) => {
+            return <ProductItem key={product._id} product={product} />;
+          })}
+        </div>
+      </section>
+      <section>
+        {/* PRODUCTOS DESTACADOS  HOMBRES */}
+        <h2 className="title">FEATURED PRODUCTS - MEN'S CLOTHING </h2>
+        <div className="products">
+          {featuredMenProducts.map((product) => {
+            return <ProductItem key={product._id} product={product} />;
+          })}
+        </div>
+      </section>
     </main>
   );
 }

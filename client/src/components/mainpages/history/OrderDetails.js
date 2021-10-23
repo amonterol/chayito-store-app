@@ -55,7 +55,7 @@ function OrderDetails() {
           {orderDetails.cart.map((item) => (
             <tr key={item._id}>
               <td>
-                <img src={item.images} alt="" />
+                <img src={item.images.url} alt="" />
               </td>
               <td>{item.title}</td>
               <td>{item.quantity}</td>

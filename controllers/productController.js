@@ -54,7 +54,10 @@ class APIfeatures {
 const productController = {
   getProducts: async (req, res) => {
     try {
-      const features = new APIfeatures(Products.find(), req.query)
+      const features = new APIfeatures(
+        Products.find({ stock: { $gte: 1 } }),
+        req.query
+      )
         .filtering()
         .sorting()
         .paginating();
@@ -113,7 +116,8 @@ const productController = {
   },
   updateProduct: async (req, res) => {
     try {
-      const { title, price, description, content, images, category } = req.body;
+      const { title, price, description, content, images, category, featured } =
+        req.body;
       if (!images) return res.status(400).json({ msg: "No image upload" });
 
       await Products.findOneAndUpdate(
@@ -125,10 +129,56 @@ const productController = {
           content,
           images,
           category,
+          featured,
         }
       );
 
       res.json({ msg: "Updated a Product" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getCartProduct: async (req, res) => {
+    try {
+      const { id } = req.body;
+      const prod = await Products.find({ _id: id });
+      if (!prod) {
+        return res.status(400).json({ msg: "Product does not exist." });
+      }
+      res.json(prod);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  addWomenFeaturedProduct: async (req, res) => {
+    try {
+      let featuredWomen = [];
+      featuredWomen = await Products.find({
+        featured: true,
+        gender: "mujer",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!featuredWomen)
+        return res
+          .status(400)
+          .json({ msg: "No products with featured equals true." });
+      res.json(featuredWomen);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  addMenFeaturedProduct: async (req, res) => {
+    try {
+      const featuredMen = await Products.find({
+        featured: true,
+        gender: "hombre",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!featuredMen)
+        return res
+          .status(400)
+          .json({ msg: "No products with featured equals true." });
+      res.json(featuredMen);
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

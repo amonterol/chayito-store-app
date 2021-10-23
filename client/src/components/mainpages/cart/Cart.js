@@ -34,7 +34,13 @@ function Cart() {
   const increment = (id) => {
     cart.forEach((item) => {
       if (item._id === id) {
-        item.quantity += 1;
+        if (item.stock > 0 && item.quantity < item.stock) {
+          item.quantity += 1;
+        } else {
+          alert(
+            "It is not possible to add for items because they exceed the available quantity"
+          );
+        }
       }
     });
 
@@ -91,13 +97,13 @@ function Cart() {
     <div>
       {cart.map((product) => (
         <div className="detail cart" key={product._id}>
-          <img src={product.images} alt="" />
+          <img src={product.images.url} alt="" />
 
           <div className="box-detail">
             <h2>{product.title}</h2>
             <h3>$ {product.price * product.quantity}</h3>
-            <p>{product.description}</p>
-            <p>{product.content}</p>
+            <p>{product.product_id}</p>
+            {/* <p>{product.content}</p> */}
 
             <div className="amount">
               <button onClick={() => decrement(product._id)}> - </button>

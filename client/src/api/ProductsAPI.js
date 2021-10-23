@@ -9,6 +9,8 @@ function ProductsAPI() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [result, setResult] = useState(0);
+  const [featuredWomenProducts, setFeaturedWomenProducts] = useState([]);
+  const [featuredMenProducts, setFeaturedMenProducts] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -23,6 +25,26 @@ function ProductsAPI() {
     getProducts();
   }, [callback, category, sort, search, page]);
 
+  useEffect(() => {
+    const getFeaturedWomenProducts = async () => {
+      const res = await axios.get(`/api/featured_women_products`);
+      console.log("Respuesta a consulta featured women products");
+      console.log(res.data);
+      setFeaturedWomenProducts(res.data);
+    };
+    getFeaturedWomenProducts();
+  }, [callback, page]);
+
+  useEffect(() => {
+    const getFeaturedMenProducts = async () => {
+      const res = await axios.get(`/api/featured_men_products`);
+      console.log("Respuesta a consulta featured men products");
+      console.log(res.data);
+      setFeaturedMenProducts(res.data);
+    };
+    getFeaturedMenProducts();
+  }, [callback, page]);
+
   return {
     products: [products, setProducts],
     callback: [callback, setCallback],
@@ -31,6 +53,8 @@ function ProductsAPI() {
     search: [search, setSearch],
     page: [page, setPage],
     result: [result, setResult],
+    featuredWomenProducts: [featuredWomenProducts, setFeaturedWomenProducts],
+    featuredMenProducts: [featuredMenProducts, setFeaturedMenProducts],
   };
 }
 

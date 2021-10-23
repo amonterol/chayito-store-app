@@ -32,6 +32,9 @@ const paymentController = {
       cart.filter((item) => {
         return sold(item._id, item.quantity, item.sold);
       });
+      cart.filter((item) => {
+        return updateStock(item._id, item.quantity, item.stock);
+      });
 
       await newPayment.save();
 
@@ -47,6 +50,15 @@ const sold = async (id, quantity, oldSold) => {
     { _id: id },
     {
       sold: quantity + oldSold,
+    }
+  );
+};
+
+const updateStock = async (id, quantity, oldStock) => {
+  await Products.findOneAndUpdate(
+    { _id: id },
+    {
+      stock: oldStock - quantity,
     }
   );
 };
