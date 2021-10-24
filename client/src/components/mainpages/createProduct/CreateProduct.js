@@ -179,6 +179,17 @@ function CreateProduct() {
             onChange={handleChangeInput}
           />
         </div>
+        <div className="row">
+          <label htmlFor="brand">Brand</label>
+          <input
+            type="text"
+            name="brand"
+            id="brand"
+            required
+            value={product.brand}
+            onChange={handleChangeInput}
+          />
+        </div>
 
         <div className="row">
           <label htmlFor="price">Price</label>
@@ -190,6 +201,49 @@ function CreateProduct() {
             value={product.price}
             onChange={handleChangeInput}
           />
+        </div>
+        <div className="row">
+          <label htmlFor="price">Stock</label>
+          <input
+            type="number"
+            name="stock"
+            id="stock"
+            required
+            value={product.stock}
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <div className="row">
+          <label htmlFor="gender">Gender: </label>
+          <select
+            name="gender"
+            value={product.gender}
+            onChange={handleChangeInput}
+          >
+            <option value="">Please select a gender</option>
+            <option value="noaplica">No aplica</option>
+            <option value="caballeros">Caballeros</option>
+            <option value="damas">Damas</option>
+            <option value="nina">Niña</option>
+            <option value="nino">Niño</option>
+          </select>
+        </div>
+
+        <div className="row">
+          <label htmlFor="categories">Categories: </label>
+          <select
+            name="category"
+            value={product.category}
+            onChange={handleChangeInput}
+          >
+            <option value="">Please select a category</option>
+            {categories.map((category) => (
+              <option value={category._id} key={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="row">
@@ -216,22 +270,6 @@ function CreateProduct() {
             rows="7"
             onChange={handleChangeInput}
           />
-        </div>
-
-        <div className="row">
-          <label htmlFor="categories">Categories: </label>
-          <select
-            name="category"
-            value={product.category}
-            onChange={handleChangeInput}
-          >
-            <option value="">Please select a category</option>
-            {categories.map((category) => (
-              <option value={category._id} key={category._id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
         </div>
 
         <button type="submit">{onEdit ? "Update" : "Create"}</button>

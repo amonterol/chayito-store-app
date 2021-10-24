@@ -78,11 +78,15 @@ const productController = {
       const {
         product_id,
         title,
+        brand,
         price,
         description,
         content,
         images,
         category,
+        gender,
+        featured,
+        stock,
       } = req.body;
       if (!images) return res.status(400).json({ msg: "No image upload" });
 
@@ -92,12 +96,16 @@ const productController = {
 
       const newProduct = new Products({
         product_id,
-        title: title.toLowerCase(),
+        title,
+        brand,
         price,
         description,
         content,
         images,
         category,
+        gender,
+        featured,
+        stock,
       });
 
       await newProduct.save();
@@ -116,20 +124,33 @@ const productController = {
   },
   updateProduct: async (req, res) => {
     try {
-      const { title, price, description, content, images, category, featured } =
-        req.body;
+      const {
+        title,
+        brand,
+        price,
+        description,
+        content,
+        images,
+        category,
+        gender,
+        featured,
+        stock,
+      } = req.body;
       if (!images) return res.status(400).json({ msg: "No image upload" });
 
       await Products.findOneAndUpdate(
         { _id: req.params.id },
         {
-          title: title.toLowerCase(),
+          title,
+          brand,
           price,
           description,
           content,
           images,
           category,
+          gender,
           featured,
+          stock,
         }
       );
 
@@ -179,6 +200,112 @@ const productController = {
           .status(400)
           .json({ msg: "No products with featured equals true." });
       res.json(featuredMen);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getWomenProducts: async (req, res) => {
+    try {
+      const womenProducts = await Products.find({
+        gender: "mujer",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!womenProducts)
+        return res
+          .status(400)
+          .json({ msg: "No products with gender equals women." });
+      res.json(womenProducts);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getMenProducts: async (req, res) => {
+    try {
+      const menProducts = await Products.find({
+        gender: "hombre",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!menProducts)
+        return res
+          .status(400)
+          .json({ msg: "No products with gender equals men." });
+      res.json(menProducts);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getFabricProducts: async (req, res) => {
+    try {
+      const fabricProducts = await Products.find({
+        category: "fabric",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!fabricProducts)
+        return res
+          .status(400)
+          .json({ msg: "No products with category equals fabric." });
+      res.json(fabricProducts);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  getBoyProducts: async (req, res) => {
+    try {
+      const boyProducts = await Products.find({
+        gender: "boy",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!boyProducts)
+        return res
+          .status(400)
+          .json({ msg: "No products with gender equals boy." });
+      res.json(boyProducts);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getGirlProducts: async (req, res) => {
+    try {
+      const girlProducts = await Products.find({
+        gender: "girl",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!girlProducts)
+        return res
+          .status(400)
+          .json({ msg: "No products with gender equals girl." });
+      res.json(girlProducts);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getAccesoriesProducts: async (req, res) => {
+    try {
+      const accesoriesProducts = await Products.find({
+        category: "accesories",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!accesoriesProducts)
+        return res
+          .status(400)
+          .json({ msg: "No products with category equals accesories." });
+      res.json(accesoriesProducts);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getSchoolProducts: async (req, res) => {
+    try {
+      const schoolProducts = await Products.find({
+        categoy: "school",
+        stock: { $gte: 1 },
+      }).exec();
+      if (!schoolProducts)
+        return res
+          .status(400)
+          .json({ msg: "No products with category equals school." });
+      res.json(schoolProducts);
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

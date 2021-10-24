@@ -12,6 +12,8 @@ import Category from "./category/Category";
 import CreateProduct from "./createProduct/CreateProduct";
 import NotFound from "./utils/not_found/NotFound";
 import { GlobalState } from "../../GlobalState";
+import WomenProducts from "./products/WomenProducts";
+import MenProducts from "./products/MenProducts";
 
 function Pages() {
   const state = useContext(GlobalState);
@@ -33,6 +35,8 @@ function Pages() {
         exact
         component={isAdmin ? CreateProduct : NotFound}
       />
+      <Route path="/products/women" exact component={WomenProducts} />
+      <Route path="/products/men" exact component={MenProducts} />
 
       <Route path="/login" exact component={isLogged ? NotFound : Login} />
       <Route path="/register" exact component={Register} />

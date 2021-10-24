@@ -14,11 +14,19 @@ router
   .put(auth, authAdmin, productController.updateProduct);
 
 router.route("/product").get(productController.getCartProduct);
+
 router
   .route("/featured_women_products")
   .get(productController.addWomenFeaturedProduct);
+
+router.route("/products/women").get(productController.getWomenProducts);
+router.route("/products/men").get(productController.getMenProducts);
+router.route("/products/fabrics").get(productController.getFabricProducts);
+router.route("/products/boy").get(productController.getBoyProducts);
+router.route("/products/girl").get(productController.getGirlProducts);
 router
-  .route("/featured_men_products")
-  .get(productController.addMenFeaturedProduct);
+  .route("/products/accessories")
+  .get(productController.getAccesoriesProducts);
+router.route("/products/school").get(productController.getSchoolProducts);
 
 module.exports = router;

@@ -33,6 +33,7 @@ export default function ProductDetail() {
           <div className="row">
             <h2>{productDetail.title}</h2>
             <h6>#id: {productDetail.product_id}</h6>
+            <h6>#id: {productDetail.brand}</h6>
           </div>
 
           <span>$ {productDetail.price}</span>
