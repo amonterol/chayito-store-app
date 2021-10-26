@@ -176,7 +176,7 @@ const productController = {
       let featuredWomen = [];
       featuredWomen = await Products.find({
         featured: true,
-        gender: "mujer",
+        gender: "damas",
         stock: { $gte: 1 },
       }).exec();
       if (!featuredWomen)
@@ -192,7 +192,7 @@ const productController = {
     try {
       const featuredMen = await Products.find({
         featured: true,
-        gender: "hombre",
+        gender: "caballeros",
         stock: { $gte: 1 },
       }).exec();
       if (!featuredMen)
@@ -207,7 +207,7 @@ const productController = {
   getWomenProducts: async (req, res) => {
     try {
       const womenProducts = await Products.find({
-        gender: "mujer",
+        gender: "damas",
         stock: { $gte: 1 },
       }).exec();
       if (!womenProducts)
@@ -222,7 +222,7 @@ const productController = {
   getMenProducts: async (req, res) => {
     try {
       const menProducts = await Products.find({
-        gender: "hombre",
+        gender: "caballeros",
         stock: { $gte: 1 },
       }).exec();
       if (!menProducts)

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-conten: space-around;
   height: 100%;
-  max-width: 30rem;
+  width: 30rem;
   overflow: hidden;
   /* height: 50rem;
   box-shadow: 0 0 15px #ddd;

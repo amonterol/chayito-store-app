@@ -18,6 +18,9 @@ router.route("/product").get(productController.getCartProduct);
 router
   .route("/featured_women_products")
   .get(productController.addWomenFeaturedProduct);
+router
+  .route("/featured_men_products")
+  .get(productController.addMenFeaturedProduct);
 
 router.route("/products/women").get(productController.getWomenProducts);
 router.route("/products/men").get(productController.getMenProducts);
