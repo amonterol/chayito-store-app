@@ -1,5 +1,6 @@
 import React from "react";
 import BtnRender from "./BtnRender";
+import { Link } from "react-router-dom";
 
 export default function ProductItem({
   product,
@@ -16,12 +17,19 @@ export default function ProductItem({
           onChange={() => handleCheck(product._id)}
         />
       )}
-      <img src={product.images.url} alt="" />
 
-      <div className="product_box">
-        <h2 title={product.title}>{product.title}</h2>
-        <span>${product.price}</span>
-        <p>{product.description}</p>
+      <img src={product.images.url} alt="" />
+      <div className="product-box">
+        <Link to="#!">
+          <p className="product-card-title" title={product.title}>
+            {product.title}
+          </p>
+        </Link>
+
+        <h4 className="product-card-brand" title={product.brand}>
+          {product.brand}
+        </h4>
+        <h3 className="product-card-price">${product.price}</h3>
       </div>
       <BtnRender product={product} deleteProduct={deleteProduct} />
     </div>

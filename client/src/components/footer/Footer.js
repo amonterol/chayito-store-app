@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Footer() {
-  return (
+  /* return (
     <footer className="grid-container">
       <div className="item1">
         {" "}
@@ -50,5 +50,12 @@ export default function Footer() {
         </li>
       </div>
     </footer>
+  ); */
+
+  return (
+    <div className="footer-container">
+      <h3> Tienda Chayito</h3>
+      <h6>{"Copyright © "} 2021 | Derechos reservados</h6>
+    </div>
   );
 }

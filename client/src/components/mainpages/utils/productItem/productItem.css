@@ -1,31 +1,68 @@
 .product_card {
-  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-conten: space-around;
+  height: 100%;
+  max-width: 30rem;
   overflow: hidden;
-  height: 500px;
-
+  /* height: 50rem;
   box-shadow: 0 0 15px #ddd;
   margin: 10px 0;
-  position: relative;
+  position: relative; */
 }
 .product_card img {
-  width: 100%;
+  /* width: 100%;
   height: 300px;
+  display: block;
+  object-fit: cover; */
+  height: 35rem;
+  width: 100%;
   display: block;
   object-fit: cover;
 }
-.product_box h2 {
+.product-box {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-conten: space-around;
+}
+.product-card-title {
+  line-height: 2.2rem;
+  font-size: 2rem;
+  font-weight: bold;
   width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   text-transform: capitalize;
-  cursor: pointer;
-  color: #323232;
+  color: #000000;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
-.product_card span {
-  color: crimson;
+
+.product-card-title:hover {
+  color: #4287f5;
 }
-.product_box p {
+
+.product-card-brand {
+  line-height: 2.2rem;
+  font-size: 1.2rem;
+  overflow: hidden;
+  color: #808080;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.product-card-price {
+  line-height: 2.2rem;
+  font-size: 1.8rem;
+  overflow: hidden;
+}
+
+/* .product_box p {
   width: 100%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -33,7 +70,7 @@
   height: 70px;
   overflow: hidden;
   color: #323232;
-}
+} */
 .row_btn {
   width: 100%;
   margin-top: 10px;
@@ -50,15 +87,25 @@
   padding: 6px;
 }
 #btn_buy {
-  background: #555;
+  background: #4287f5;
   margin-right: 5px;
 }
+#btn_buy:hover {
+  background: #00f;
+  color: #000000;
+  font-weight: bold;
+}
 #btn_view {
-  background: teal;
+  background: #7fab7d;
   margin-left: 5px;
+}
+#btn_view:hover {
+  background: #00f;
+  color: #000000;
+  font-weight: bold;
 }
 .product_card input {
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 2px;
 }

@@ -1,12 +1,12 @@
-.grid-container {
+/* .grid-container {
   display: grid;
   grid: 250px / auto auto auto;
   grid-gap: 10px;
-  background-color: #1a1919;
+  background-color: #8e9009;
   padding: 10px;
 }
 .grid-container > div {
-  background-color: #1a1919;
+  background-color: #706f6f;
   text-align: center;
   padding: 20px 0;
   font-size: 24px;
@@ -14,4 +14,20 @@
   font-family: initial;
   font-weight: normal;
   color: #eee;
+} */
+
+.footer-container {
+  margin-top: 5rem;
+  position: relative;
+  width: 100%;
+  background-color: #706f6f;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  color: black;
+
+  font-weight: normal;
+  font-size: 2.4rem;
 }

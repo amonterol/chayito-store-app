@@ -47,7 +47,7 @@ header ul li:hover {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #2f2835;
+  background-color: #8e9009; /* #2f2835; */
 }
 .redes {
   display: flex;

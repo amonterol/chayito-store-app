@@ -8,14 +8,59 @@ function Cart() {
   const [cart, setCart] = state.userAPI.cart;
   const [token] = state.token;
   const [total, setTotal] = useState(0);
+  const [subTotal, setSubTotal] = useState(0);
+  const [tax, setTax] = useState(0);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const getTotal = () => {
       const total = cart.reduce((prev, item) => {
         return prev + item.price * item.quantity;
       }, 0);
 
       setTotal(total);
+    };
+
+    getTotal();
+  }, [cart]); */
+
+  /* Nuevo*/
+  function financial(x) {
+    return Number.parseFloat(x).toFixed(2);
+  }
+
+  useEffect(() => {
+    const getSubTotal = () => {
+      const subTotal = cart.reduce((prev, item) => {
+        return prev + item.price * item.quantity;
+      }, 0);
+
+      setSubTotal(financial(subTotal));
+    };
+
+    getSubTotal();
+  }, [cart]);
+
+  useEffect(() => {
+    const getTax = () => {
+      const tax = cart.reduce((prev, item) => {
+        return prev + item.price * item.quantity * 0.13;
+      }, 0);
+
+      setTax(financial(tax));
+    };
+
+    getTax();
+  }, [cart]);
+
+  useEffect(() => {
+    const getTotal = () => {
+      const total = cart.reduce((prev, item) => {
+        return (
+          prev + item.price * item.quantity * 0.13 + item.price * item.quantity
+        );
+      }, 0);
+
+      setTotal(financial(total));
     };
 
     getTotal();
@@ -93,7 +138,7 @@ function Cart() {
       <h2 style={{ textAlign: "center", fontSize: "5rem" }}>Cart Empty</h2>
     );
 
-  return (
+  /*  return (
     <div>
       {cart.map((product) => (
         <div className="detail cart" key={product._id}>
@@ -103,7 +148,7 @@ function Cart() {
             <h2>{product.title}</h2>
             <h3>$ {product.price * product.quantity}</h3>
             <p>{product.product_id}</p>
-            {/* <p>{product.content}</p> */}
+           
 
             <div className="amount">
               <button onClick={() => decrement(product._id)}> - </button>
@@ -121,6 +166,70 @@ function Cart() {
       <div className="total">
         <h3>Total: $ {total}</h3>
         <PaypalButton total={total} tranSuccess={tranSuccess} />
+      </div>
+    </div>
+  ); */
+  return (
+    <div className="  cart">
+      <div className="cart-list">
+        <ul className="cart-list-container">
+          <li>
+            <h3>Items Cart</h3>
+            <h3>Price</h3>
+          </li>
+          {cart.map((product) => (
+            <li>
+              <div className="cart-image" key={product._id}>
+                <img src={product.images.url} alt="imagen del producto" />
+              </div>
+              <div class="cart-name">
+                <div>
+                  <a href="/">{product.title}</a>
+
+                  <div className="cart-amount">
+                    <button
+                      className="cart-amount-button"
+                      onClick={() => decrement(product._id)}
+                    >
+                      {" "}
+                      -{" "}
+                    </button>
+                    <span className="cart-amount-span">{product.quantity}</span>
+                    <button
+                      className="cart-amount-button"
+                      onClick={() => increment(product._id)}
+                    >
+                      {" "}
+                      +{" "}
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    className="cart-delete"
+                    onClick={() => removeProduct(product._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div className="cart-price">$ {product.price}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="cart-total-data">
+        <div>
+          <h3>SubTotal: $ {subTotal}</h3>
+        </div>
+        <div>
+          <h3>Tax: $ {tax}</h3>
+        </div>
+        <div>
+          <h3>Total: $ {total}</h3>
+        </div>
+        <div>
+          <PaypalButton total={total} tranSuccess={tranSuccess} />
+        </div>
       </div>
     </div>
   );

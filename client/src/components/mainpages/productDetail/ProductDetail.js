@@ -32,17 +32,16 @@ export default function ProductDetail() {
         <div className="box-detail">
           <div className="row">
             <h2>{productDetail.title}</h2>
-            <h6>#id: {productDetail.product_id}</h6>
-            <h6>#id: {productDetail.brand}</h6>
           </div>
-
-          <span>$ {productDetail.price}</span>
-          <p>{productDetail.description}</p>
-          <p>{productDetail.content}</p>
+          <h6>#id: {productDetail.product_id}</h6>
+          <h6>Brand: {productDetail.brand}</h6>
+          <h3>$ {productDetail.price}</h3>
+          <p className="detail-description">{productDetail.description}</p>
+          <p className="detail-context">{productDetail.content}</p>
           <p>Sold: {productDetail.sold}</p>
           <Link
             to="/cart"
-            className="cart"
+            className="btn-add-cart"
             onClick={() => addCart(productDetail)}
           >
             Buy Now
