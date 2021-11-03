@@ -53,6 +53,7 @@
 }
 
 .cart-total-data h3 {
+  min-height: 5rem;
   font-size: 1.8rem;
   font-weight: bold;
   color: black;
@@ -138,7 +139,7 @@
 }
 .cart-list div {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .cart-delete {
@@ -151,4 +152,7 @@
   font-size: 1.6rem;
   font-weight: bold;
   background: red;
+}
+.paypal-button {
+  width: 100%;
 }

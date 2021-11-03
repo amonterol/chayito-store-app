@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { GlobalState } from "../../../GlobalState";
 import axios from "axios";
 import PaypalButton from "./PaypalButton";
+import Trash from "./icons/trash.svg";
 
 function Cart() {
   const state = useContext(GlobalState);
@@ -76,7 +77,7 @@ function Cart() {
     );
   };
 
-  const increment = (id) => {
+  const increase = (id) => {
     cart.forEach((item) => {
       if (item._id === id) {
         if (item.stock > 0 && item.quantity < item.stock) {
@@ -93,7 +94,7 @@ function Cart() {
     addToCart(cart);
   };
 
-  const decrement = (id) => {
+  const decrease = (id) => {
     cart.forEach((item) => {
       if (item._id === id) {
         item.quantity === 1 ? (item.quantity = 1) : (item.quantity -= 1);
@@ -138,44 +139,23 @@ function Cart() {
       <h2 style={{ textAlign: "center", fontSize: "5rem" }}>Cart Empty</h2>
     );
 
-  /*  return (
-    <div>
-      {cart.map((product) => (
-        <div className="detail cart" key={product._id}>
-          <img src={product.images.url} alt="" />
-
-          <div className="box-detail">
-            <h2>{product.title}</h2>
-            <h3>$ {product.price * product.quantity}</h3>
-            <p>{product.product_id}</p>
-           
-
-            <div className="amount">
-              <button onClick={() => decrement(product._id)}> - </button>
-              <span>{product.quantity}</span>
-              <button onClick={() => increment(product._id)}> + </button>
-            </div>
-
-            <div className="delete" onClick={() => removeProduct(product._id)}>
-              X
-            </div>
-          </div>
-        </div>
-      ))}
-
-      <div className="total">
-        <h3>Total: $ {total}</h3>
-        <PaypalButton total={total} tranSuccess={tranSuccess} />
-      </div>
-    </div>
-  ); */
+  const isDelivered = false;
   return (
     <div className="  cart">
       <div className="cart-list">
         <ul className="cart-list-container">
           <li>
-            <h3>Items Cart</h3>
-            <h3>Price</h3>
+            <div>
+              <h2>Shipping address:</h2>
+              {isDelivered ? (
+                <div className="cart-icon"> Deliverd at </div>
+              ) : (
+                <div className="cart-icon"> Not Deliverd</div>
+              )}
+            </div>
+          </li>
+          <li>
+            <h2>Phone:</h2>
           </li>
           {cart.map((product) => (
             <li>
@@ -186,37 +166,38 @@ function Cart() {
                 <div>
                   <a href="/">{product.title}</a>
 
-                  <div className="cart-amount">
-                    <button
-                      className="cart-amount-button"
-                      onClick={() => decrement(product._id)}
-                    >
-                      {" "}
-                      -{" "}
-                    </button>
-                    <span className="cart-amount-span">{product.quantity}</span>
-                    <button
-                      className="cart-amount-button"
-                      onClick={() => increment(product._id)}
-                    >
-                      {" "}
-                      +{" "}
-                    </button>
-                  </div>
-                  <button
-                    type="button"
-                    className="cart-delete"
-                    onClick={() => removeProduct(product._id)}
-                  >
-                    Delete
-                  </button>
+                  <div>$ {product.price}</div>
+                  <div>In Stock: {product.stock}</div>
                 </div>
               </div>
-              <div className="cart-price">$ {product.price}</div>
+              <div className="cart-amount">
+                <button
+                  className="cart-amount-button"
+                  onClick={() => decrease(product._id)}
+                >
+                  {" "}
+                  -{" "}
+                </button>
+                <span className="cart-amount-span">{product.quantity}</span>
+                <button
+                  className="cart-amount-button"
+                  onClick={() => increase(product._id)}
+                >
+                  {" "}
+                  +{" "}
+                </button>
+              </div>
+              <div
+                className="cart-amount"
+                onClick={() => removeProduct(product._id)}
+              >
+                <img src={Trash} alt="Trash" width="30px" height="30px" />
+              </div>
             </li>
           ))}
         </ul>
       </div>
+
       <div className="cart-total-data">
         <div>
           <h3>SubTotal: $ {subTotal}</h3>
@@ -227,8 +208,12 @@ function Cart() {
         <div>
           <h3>Total: $ {total}</h3>
         </div>
-        <div>
-          <PaypalButton total={total} tranSuccess={tranSuccess} />
+        <div className="cart paypal-button">
+          <PaypalButton
+            total={total}
+            tranSuccess={tranSuccess}
+            className=" paypal-button"
+          />
         </div>
       </div>
     </div>
